@@ -4,16 +4,9 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    class Program
+    class MainMenu
     {
-        static void Main(string[] args)
-        {
-        }
-    }
 
-
-    class Menu
-    {
         //private string m_MenuTitle;
         //private List<T> m_MenuList = new List<T>();
         //private m_UserMsg = "Please Chosse one of the following options or Exit (pick a number)";
@@ -21,7 +14,7 @@ namespace Ex04.Menus.Interfaces
         //
         //MenuItem mymenuItem = new MenueItem(bool isExe, string optionTitle);
         // members : List menue, execute() : 1. create new menue
-                                           // 2. run function.
+        // 2. run function.
 
 
     }
