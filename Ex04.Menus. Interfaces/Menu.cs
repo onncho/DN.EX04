@@ -11,6 +11,7 @@ namespace Ex04.Menus.Interfaces
 
         //
         void run();
+
         // read input from user
         int readInputFromUser();
 

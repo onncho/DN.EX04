@@ -11,14 +11,4 @@ namespace Ex04.Menus.Test
         }
     }
 
-
-    class Menu
-    {
-        private m_MenuTitle;
-        private m_MenuList;
-        private m_UserMsg = "Please Chosse one of the following options or Exit (pick a number)";
-
-
-
-    }
 }
