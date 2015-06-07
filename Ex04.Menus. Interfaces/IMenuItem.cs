@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    interface MenuItem
+    public interface IMenuItem
     {
-        void run();
-        void show();
-        void getTitle();
-        bool isExecutle();
+        void runCommand();
+        //void show();
+        string getTitle();
+        //bool isExecutle();
         void quit();
     }
 }

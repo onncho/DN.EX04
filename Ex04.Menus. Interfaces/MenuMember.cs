@@ -4,10 +4,13 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    class Program
+    public abstract class MenuMember
     {
-        static void Main(string[] args)
-        { 
+        string m_Title;
+
+        public string getTitle 
+        {
+            get ; 
         }
     }
 }
