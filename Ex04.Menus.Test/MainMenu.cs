@@ -76,7 +76,7 @@ namespace Ex04.Menus.Test
                     Console.WriteLine(k_ExitMenu);
                 }
 
-                Console.WriteLine("Please choose your option :");
+                Console.Write("Please choose your option: ");
                 quit = userActionFlow(i_MenueMembers, readInputFromUser());
             }
         }
@@ -118,6 +118,7 @@ namespace Ex04.Menus.Test
                 }
                 else
                 {
+                    Console.Clear();
                     i_MenueList[i_userAction - 1].runCommand();
                 }
             }
