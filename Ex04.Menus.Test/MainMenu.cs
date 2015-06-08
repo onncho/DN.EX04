@@ -13,6 +13,7 @@ namespace Ex04.Menus.Test
         private const string k_ErrorMsg = "Seems that you enters illegal option number, please try again";
         private int m_menuLevel = 0;
         private string m_MenueTitle;
+        private string m_innerMenuTitle;
 
         public MainMenu(string i_menueTitle, List<Interfaces.MenuMember> i_menueMembers)
         {
@@ -34,12 +35,12 @@ namespace Ex04.Menus.Test
 
         public void show()
         {
-            showMenu(r_MenueList);
+            showMenu(r_MenueList, null);
         }
 
-        public void showMenu(List<Interfaces.MenuMember> i_MenueMembers)
+        public void showMenu(List<Interfaces.MenuMember> i_MenueMembers, string i_menuTitle)
         {
-            bool quit = false;
+            bool quit = false; 
 
             while (!quit)
             {
@@ -53,6 +54,10 @@ namespace Ex04.Menus.Test
                     Console.WriteLine("========================\n");
                 }
 
+                if (m_menuLevel > 0)
+                {
+                    Console.WriteLine(i_menuTitle + " Menu: \n");
+                }
                 Console.WriteLine(k_UserMsg);
 
                 foreach (Interfaces.MenuMember item in i_MenueMembers)
@@ -97,7 +102,7 @@ namespace Ex04.Menus.Test
                 if (!(i_MenueList[i_userAction - 1].isExecutable))
                 {
                     m_menuLevel++;
-                    showMenu(i_MenueList[i_userAction - 1].getMenueMembers);
+                    showMenu(i_MenueList[i_userAction - 1].getMenueMembers, i_MenueList[i_userAction - 1].getTitle);
                 }
                 else
                 {
