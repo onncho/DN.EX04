@@ -10,6 +10,7 @@ namespace Ex04.Menus.Test
         public void runCommand()
         {
             Console.WriteLine("This tool count words from a sentence, please insert a string and press enter");
+            
             string userInput = Console.ReadLine();
             
             Console.WriteLine("We Count : {0} words", CountWordsFromString(userInput));
