@@ -79,7 +79,11 @@ namespace Ex04.Menus.Test
                 Console.WriteLine("Please choose your option :");
                 quit = userActionFlow(i_MenueMembers, readInputFromUser());
             }
+        }
 
+        public string getTitle()
+        {
+            return m_MenueTitle;
         }
 
         private void drawMenuLine(int i_linesToDraw)
@@ -107,7 +111,6 @@ namespace Ex04.Menus.Test
             }
             else if (i_userAction <= numOfMenuItems)
             {
-
                 if (!(i_MenueList[i_userAction - 1].isExecutable))
                 {
                     m_menuLevel++;
@@ -128,7 +131,7 @@ namespace Ex04.Menus.Test
             return quit;
         }
 
-        public int readInputFromUser()
+        private int readInputFromUser()
         {
             bool inputIsLegit = true;
             int returnValue = -1;
@@ -160,11 +163,6 @@ namespace Ex04.Menus.Test
             }
 
             return returnValue;
-        }
-
-        public string getTitle()
-        {
-            return m_MenueTitle;
         }
     }
 }

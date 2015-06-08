@@ -7,8 +7,8 @@ namespace Ex04.Menus.Interfaces
     public class MenuMember : IExecutableItem
     {
         //define members
-        string m_Title;
         protected List<MenuMember> m_MenuMembersList;
+        private string m_Title;
         private IExecutableItem m_ExecutableItem;
 
         //given a menue title and a function to execute
@@ -29,7 +29,6 @@ namespace Ex04.Menus.Interfaces
         {
             m_ExecutableItem.runCommand();
         }
-
 
         public List<MenuMember> getMenueMembers
         {

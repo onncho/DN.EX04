@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Ex04.Menus.Test
 {
-    class CountWordsFromASentece : Interfaces.IExecutableItem
+    public class CountWordsFromASentece : Interfaces.IExecutableItem
     {
         public void runCommand()
         {

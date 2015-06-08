@@ -6,7 +6,7 @@ namespace Ex04.Menus.Test
 {
     public class InterfaceMenueTest
     {
-        MainMenu m_menu;
+        private MainMenu m_menu;
 
         public InterfaceMenueTest()
         {

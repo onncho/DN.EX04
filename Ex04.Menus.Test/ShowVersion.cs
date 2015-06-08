@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex04.Menus.Test
 {
-    class ShowVersion : Interfaces.IExecutableItem
+    public class ShowVersion : Interfaces.IExecutableItem
     {
         public void runCommand()
         {

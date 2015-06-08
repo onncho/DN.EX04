@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex04.Menus.Test
 {
-    class ShowDate : Interfaces.IExecutableItem
+    public class ShowDate : Interfaces.IExecutableItem
     {
         public void runCommand()
         {
