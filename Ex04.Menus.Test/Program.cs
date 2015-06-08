@@ -10,6 +10,9 @@ namespace Ex04.Menus.Test
         {
             InterfaceMenueTest interfaceTest = new InterfaceMenueTest();
             interfaceTest.showMenu();
+
+            DelegateMenuTest delegatesTest = new DelegateMenuTest();
+            delegatesTest.ShowMenu();
         }
     }
 }

@@ -8,12 +8,12 @@ namespace Ex04.Menus.Test
     {
         DelegateTestDateAndTime m_categoryOne = new DelegateTestDateAndTime();
         DelegateTestInfoVersion m_categoryTwo = new DelegateTestInfoVersion();
-
-        private Dictionary<string, List<Ex04_GalRettig.MenuItem>> m_delegates = new Dictionary<string, List<Ex04_GalRettig.MenuItem>>()
+        
+        private Dictionary<string, List<Ex04.Menus.Delegates.MenuItem>> m_delegates = new Dictionary<string, List<Ex04.Menus.Delegates.MenuItem>>()
         {
-            {"TimeAndDate", new List<Ex04_GalRettig.MenuItem>() },
-            {"InfoAndVersion", new List<Ex04_GalRettig.MenuItem>() },
-            {"MainMenu", new List<Ex04_GalRettig.MenuItem>() }
+            {"TimeAndDate", new List<Ex04.Menus.Delegates.MenuItem>() },
+            {"InfoAndVersion", new List<Ex04.Menus.Delegates.MenuItem>() },
+            {"MainMenu", new List<Ex04.Menus.Delegates.MenuItem>() }
         };
 
         private void initComponents()
@@ -23,18 +23,18 @@ namespace Ex04.Menus.Test
             string secondCategoryFirstTitle = "Show Version";
             string secondCategorySecondTitle = "Count Words";
 
-            Ex04_GalRettig.DelegateExecuteItem delegateOfTime = new Ex04_GalRettig.DelegateExecuteItem(m_categoryOne.printTimeFromString);
-            Ex04_GalRettig.DelegateExecuteItem delegateOfDate = new Ex04_GalRettig.DelegateExecuteItem(m_categoryOne.printDateFromString);
+            Ex04.Menus.Delegates.DelegateExecuteItem delegateOfTime = new Ex04.Menus.Delegates.DelegateExecuteItem(m_categoryOne.printTimeFromString);
+            Ex04.Menus.Delegates.DelegateExecuteItem delegateOfDate = new Ex04.Menus.Delegates.DelegateExecuteItem(m_categoryOne.printDateFromString);
 
 
-            Ex04_GalRettig.DelegateExecuteItem delegateOfVersion = new Ex04_GalRettig.DelegateExecuteItem(m_categoryTwo.printVersionFromString);
-            Ex04_GalRettig.DelegateExecuteItem delegateOfCountWords = new Ex04_GalRettig.DelegateExecuteItem(m_categoryTwo.printCountWordsFromString);
+            Ex04.Menus.Delegates.DelegateExecuteItem delegateOfVersion = new Ex04.Menus.Delegates.DelegateExecuteItem(m_categoryTwo.printVersionFromString);
+            Ex04.Menus.Delegates.DelegateExecuteItem delegateOfCountWords = new Ex04.Menus.Delegates.DelegateExecuteItem(m_categoryTwo.printCountWordsFromString);
 
-            Ex04_GalRettig.MenuItem menuItemForTime = new Ex04_GalRettig.MenuItem(delegateOfTime, firstCategoryFirstTitle);
-            Ex04_GalRettig.MenuItem menuItemForDate = new Ex04_GalRettig.MenuItem(delegateOfDate, firstCategorySecondTitle);
+            Ex04.Menus.Delegates.MenuItem menuItemForTime = new Ex04.Menus.Delegates.MenuItem(delegateOfTime, firstCategoryFirstTitle);
+            Ex04.Menus.Delegates.MenuItem menuItemForDate = new Ex04.Menus.Delegates.MenuItem(delegateOfDate, firstCategorySecondTitle);
 
-            Ex04_GalRettig.MenuItem menuItemForVersion = new Ex04_GalRettig.MenuItem(delegateOfVersion, secondCategoryFirstTitle);
-            Ex04_GalRettig.MenuItem menuItemForCountWords = new Ex04_GalRettig.MenuItem(delegateOfCountWords, secondCategorySecondTitle);
+            Ex04.Menus.Delegates.MenuItem menuItemForVersion = new Ex04.Menus.Delegates.MenuItem(delegateOfVersion, secondCategoryFirstTitle);
+            Ex04.Menus.Delegates.MenuItem menuItemForCountWords = new Ex04.Menus.Delegates.MenuItem(delegateOfCountWords, secondCategorySecondTitle);
 
             m_delegates["TimeAndDate"].Add(menuItemForTime);
             m_delegates["TimeAndDate"].Add(menuItemForDate);
@@ -45,20 +45,20 @@ namespace Ex04.Menus.Test
 
 
 
-        public void initMenu()
+        public void ShowMenu()
         {
             initComponents();
 
             string dateTimeStringForMainMenu = "Show Date / Time";
             string infoStringForMainMenu = "Info";
 
-            Ex04_GalRettig.MenuItem menuItemTimeAndDateMainMenu = new Ex04_GalRettig.MenuItem(m_delegates["TimeAndDate"], dateTimeStringForMainMenu);
-            Ex04_GalRettig.MenuItem menuItemInfoAndVersionMainMenu = new Ex04_GalRettig.MenuItem(m_delegates["InfoAndVersion"], infoStringForMainMenu);
+            Ex04.Menus.Delegates.MenuItem menuItemTimeAndDateMainMenu = new Ex04.Menus.Delegates.MenuItem(m_delegates["TimeAndDate"], dateTimeStringForMainMenu);
+            Ex04.Menus.Delegates.MenuItem menuItemInfoAndVersionMainMenu = new Ex04.Menus.Delegates.MenuItem(m_delegates["InfoAndVersion"], infoStringForMainMenu);
 
             m_delegates["MainMenu"].Add(menuItemTimeAndDateMainMenu);
             m_delegates["MainMenu"].Add(menuItemInfoAndVersionMainMenu);
 
-            Ex04_GalRettig.MainMenu delegateMainMenu = new Ex04_GalRettig.MainMenu(m_delegates["MainMenu"]);
+            Ex04.Menus.Delegates.MainMenu delegateMainMenu = new Ex04.Menus.Delegates.MainMenu(m_delegates["MainMenu"]);
             delegateMainMenu.Show();
         }
 
