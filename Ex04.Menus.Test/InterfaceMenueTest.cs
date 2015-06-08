@@ -28,7 +28,6 @@ namespace Ex04.Menus.Test
             m_menu = new MainMenu(mainMenu);
         }
 
-
         public void showMenu()
         {
            m_menu.show();

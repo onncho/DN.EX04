@@ -8,7 +8,7 @@ namespace Ex04.Menus.Interfaces
     {
         //define members
         string m_Title;
-        private readonly List<MenuMember> m_MenuMembersList;
+        protected List<MenuMember> m_MenuMembersList;
         private IExecutableItem m_ExecutableItem;
 
         //given a menue title and a function to execute
@@ -39,12 +39,12 @@ namespace Ex04.Menus.Interfaces
             }
         }
 
-        public string getTitle 
+        public string getTitle
         {
             get
             {
                 return m_Title;
-            } 
+            }
         }
 
         public bool isExecutable
@@ -54,7 +54,5 @@ namespace Ex04.Menus.Interfaces
                 return m_ExecutableItem != null;
             }
         }
-
-        
     }
 }

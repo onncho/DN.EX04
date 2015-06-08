@@ -6,35 +6,36 @@ namespace Ex04.Menus.Test
 {
     public class MainMenu
     {
-        private readonly List<Interfaces.MenuMember> m_MenueList;
-        private string m_UserMsg = "Please Chosse one of the following options or Exit (pick a number)";
-
+        protected readonly List<Interfaces.MenuMember> r_MenueList;
+        private const string k_UserMsg = "Please Chosse one of the following options (pick a number):\n";
+        private const string k_ExitMenu = "0. Exit\n";
+        private const string k_BackMenu = "0. Back\n";
+        private const string k_ErrorMsg = "Seems that you enters illegal option number, please try again";
+        private int m_menuLevel = 0;
         private string m_MenueTitle;
-
 
         public MainMenu(string i_menueTitle, List<Interfaces.MenuMember> i_menueMembers)
         {
-            m_MenueList = i_menueMembers;
+            r_MenueList = i_menueMembers;
             m_MenueTitle = i_menueTitle;
         }
 
         //check and delete
         public MainMenu(List<Interfaces.MenuMember> i_menueMembers)
         {
-            m_MenueList = i_menueMembers;
+            r_MenueList = i_menueMembers;
         }
 
-
+        //menu item to add can be menu or a command to execute
         public void addItemToMenu(Interfaces.MenuMember i_menuItemToAdd)
         {
-            m_MenueList.Add(i_menuItemToAdd);
+            r_MenueList.Add(i_menuItemToAdd);
         }
 
         public void show()
         {
-            showMenu(m_MenueList);
+            showMenu(r_MenueList);
         }
-
 
         public void showMenu(List<Interfaces.MenuMember> i_MenueMembers)
         {
@@ -45,37 +46,69 @@ namespace Ex04.Menus.Test
                 Console.Clear();
 
                 int index = 1;
-                Console.WriteLine(m_UserMsg);
+
+                if (m_menuLevel == 0)
+                {
+                    Console.WriteLine("Welcome to the Main Menu");
+                    Console.WriteLine("========================\n");
+                }
+
+                Console.WriteLine(k_UserMsg);
 
                 foreach (Interfaces.MenuMember item in i_MenueMembers)
                 {
-                    Console.WriteLine(index + ". " + item.getTitle);
+                    Console.WriteLine(index + ". " + item.getTitle + "\n");
                     index++;
-
                 }
 
-                Console.WriteLine("0. Exit");
+                if (m_menuLevel > 0)
+                {
+                    Console.WriteLine(k_BackMenu);
+                }
+                else
+                {
+                    Console.WriteLine(k_ExitMenu);
+                }
+
                 Console.WriteLine("Please choose your option :");
-                quit = userActionFlow(m_MenueList, readInputFromUser());
+                quit = userActionFlow(i_MenueMembers, readInputFromUser());
             }
-            
+
         }
 
         private bool userActionFlow(List<Interfaces.MenuMember> i_MenueList, int i_userAction)
         {
             bool quit = false;
+            int numOfMenuItems = i_MenueList.Count;
 
             if (i_userAction == 0)
             {
+                //decrease menu level only from the second menu, also to avoid execeptions
+                if (m_menuLevel > 0)
+                {
+                    m_menuLevel--;
+                }
+
                 quit = true;
             }
-            else if (!(i_MenueList[i_userAction - 1].isExecutable))
+            else if (i_userAction <= numOfMenuItems)
             {
-                showMenu(i_MenueList[i_userAction - 1].getMenueMembers);
+
+                if (!(i_MenueList[i_userAction - 1].isExecutable))
+                {
+                    m_menuLevel++;
+                    showMenu(i_MenueList[i_userAction - 1].getMenueMembers);
+                }
+                else
+                {
+                    i_MenueList[i_userAction - 1].runCommand();
+                }
             }
             else
             {
-                i_MenueList[i_userAction - 1].runCommand();
+                Console.WriteLine(k_ErrorMsg);
+                Console.WriteLine("Press Any Key To Choose Again..");
+                Console.ReadLine();
             }
 
             return quit;
@@ -88,9 +121,7 @@ namespace Ex04.Menus.Test
 
             while (inputIsLegit)
             {
-                //int input = Console.Read();
                 int input = Convert.ToInt32(Console.ReadLine());
-                //int checkInput = checkInputFromUser(input);
                 inputIsLegit = input > -1;
 
                 if (inputIsLegit)
@@ -106,13 +137,14 @@ namespace Ex04.Menus.Test
         // return -1 if input isn't a digit.
         private int checkInputFromUser(int input)
         {
-            int returnValue = -1 ;
+            int returnValue = -1;
             char c = (char)input;
 
             if (Char.IsDigit(c))
             {
                 returnValue = c - '0';
             }
+
             return returnValue;
         }
 
@@ -120,9 +152,5 @@ namespace Ex04.Menus.Test
         {
             return m_MenueTitle;
         }
-
-
-
-       
     }
 }
