@@ -13,7 +13,6 @@ namespace Ex04.Menus.Test
         private const string k_ErrorMsg = "Seems that you enters illegal option number, please try again";
         private int m_menuLevel = 0;
         private string m_MenueTitle;
-        private string m_innerMenuTitle;
 
         public MainMenu(string i_menueTitle, List<Interfaces.MenuMember> i_menueMembers)
         {
@@ -21,7 +20,6 @@ namespace Ex04.Menus.Test
             m_MenueTitle = i_menueTitle;
         }
 
-        //check and delete
         public MainMenu(List<Interfaces.MenuMember> i_menueMembers)
         {
             r_MenueList = i_menueMembers;
@@ -50,14 +48,17 @@ namespace Ex04.Menus.Test
 
                 if (m_menuLevel == 0)
                 {
-                    Console.WriteLine("Welcome to the Main Menu");
+                    Console.WriteLine("Welcome to the Main Menu\n");
                     Console.WriteLine("========================\n");
                 }
 
                 if (m_menuLevel > 0)
                 {
                     Console.WriteLine(i_menuTitle + " Menu: \n");
+                    drawMenuLine(i_menuTitle.Length + 6);
+                    Console.WriteLine("\n");
                 }
+
                 Console.WriteLine(k_UserMsg);
 
                 foreach (Interfaces.MenuMember item in i_MenueMembers)
@@ -79,6 +80,14 @@ namespace Ex04.Menus.Test
                 quit = userActionFlow(i_MenueMembers, readInputFromUser());
             }
 
+        }
+
+        private void drawMenuLine(int i_linesToDraw)
+        {
+            for (int i = 0; i < i_linesToDraw; i++)
+            {
+                Console.Write("=");
+            }
         }
 
         private bool userActionFlow(List<Interfaces.MenuMember> i_MenueList, int i_userAction)
