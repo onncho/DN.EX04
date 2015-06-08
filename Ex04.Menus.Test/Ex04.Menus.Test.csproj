@@ -38,6 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CountWordsFromASentece.cs" />
+    <Compile Include="DelegateMenuTest.cs" />
+    <Compile Include="DelegateTestDateAndTime.cs" />
+    <Compile Include="DelegateTestInfoVersion.cs" />
     <Compile Include="InterfaceMenueTest.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
