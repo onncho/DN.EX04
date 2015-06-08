@@ -2,34 +2,26 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ex04.Menus.Test.MainMenu
+namespace Ex04.Menus.Test
 {
-    public class MainMenu : Interfaces.IMenu, Interfaces.IMenuItem
+    public class MainMenu
     {
-
-        //private string m_MenuTitle;
-        //private List<T> m_MenuList = new List<T>();
-        //private m_UserMsg = "Please Chosse one of the following options or Exit (pick a number)";
-
-        //
-        //MenuItem mymenuItem = new MenueItem(bool isExe, string optionTitle);
-        // members : List menue, execute() : 1. create new menue
-        // 2. run function.
-
-        private List<Interfaces.MenuMember> m_MenueList;
+        private readonly List<Interfaces.MenuMember> m_MenueList;
         private string m_UserMsg = "Please Chosse one of the following options or Exit (pick a number)";
+
         private string m_MenueTitle;
 
-        public MainMenu(string i_menueTitle)
-        {
-            m_MenueList = new List<Interfaces.MenuMember>();
-            m_MenueTitle = i_menueTitle;
-        }
 
         public MainMenu(string i_menueTitle, List<Interfaces.MenuMember> i_menueMembers)
         {
             m_MenueList = i_menueMembers;
             m_MenueTitle = i_menueTitle;
+        }
+
+        //check and delete
+        public MainMenu(List<Interfaces.MenuMember> i_menueMembers)
+        {
+            m_MenueList = i_menueMembers;
         }
 
 
@@ -38,20 +30,55 @@ namespace Ex04.Menus.Test.MainMenu
             m_MenueList.Add(i_menuItemToAdd);
         }
 
-        public void showMenu(Interfaces.IMenu i_menu)
+        public void show()
         {
-            int index = 1;
-            Console.WriteLine(m_UserMsg);
+            showMenu(m_MenueList);
+        }
 
-            foreach (Interfaces.MenuMember item in m_MenueList)
+
+        public void showMenu(List<Interfaces.MenuMember> i_MenueMembers)
+        {
+            bool quit = false;
+
+            while (!quit)
             {
-                Console.WriteLine(index + ". " + m_MenueTitle);
-                index++;
+                Console.Clear();
 
+                int index = 1;
+                Console.WriteLine(m_UserMsg);
+
+                foreach (Interfaces.MenuMember item in i_MenueMembers)
+                {
+                    Console.WriteLine(index + ". " + item.getTitle);
+                    index++;
+
+                }
+
+                Console.WriteLine("0. Exit");
+                Console.WriteLine("Please choose your option :");
+                quit = userActionFlow(m_MenueList, readInputFromUser());
+            }
+            
+        }
+
+        private bool userActionFlow(List<Interfaces.MenuMember> i_MenueList, int i_userAction)
+        {
+            bool quit = false;
+
+            if (i_userAction == 0)
+            {
+                quit = true;
+            }
+            else if (!(i_MenueList[i_userAction - 1].isExecutable))
+            {
+                showMenu(i_MenueList[i_userAction - 1].getMenueMembers);
+            }
+            else
+            {
+                i_MenueList[i_userAction - 1].runCommand();
             }
 
-            Console.WriteLine("0. Exit");
-            Console.WriteLine("Please choose your option :\t");
+            return quit;
         }
 
         public int readInputFromUser()
@@ -61,8 +88,10 @@ namespace Ex04.Menus.Test.MainMenu
 
             while (inputIsLegit)
             {
-                int input = Console.Read();
-                inputIsLegit = checkInputFromUser(input) > -1;
+                //int input = Console.Read();
+                int input = Convert.ToInt32(Console.ReadLine());
+                //int checkInput = checkInputFromUser(input);
+                inputIsLegit = input > -1;
 
                 if (inputIsLegit)
                 {
@@ -87,24 +116,13 @@ namespace Ex04.Menus.Test.MainMenu
             return returnValue;
         }
 
-        public void runCommand(Interfaces.MenuMember i_member)
-        {
-            //check if the member is type menu or menuItem
-            if (i_member is Interfaces.IMenu)
-            {
-                showMenu(i_member);
-            } 
-            throw new NotImplementedException();
-        }
-
         public string getTitle()
         {
             return m_MenueTitle;
         }
 
-        public void quit()
-        {
-            throw new NotImplementedException();
-        }
+
+
+       
     }
 }

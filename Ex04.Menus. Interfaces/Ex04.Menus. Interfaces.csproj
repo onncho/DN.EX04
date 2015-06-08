@@ -37,8 +37,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMenu.cs" />
-    <Compile Include="IMenuItem.cs" />
+    <Compile Include="IExecutableItem.cs" />
     <Compile Include="MenuMember.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

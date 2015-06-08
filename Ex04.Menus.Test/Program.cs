@@ -8,6 +8,8 @@ namespace Ex04.Menus.Test
     {
         static void Main(string[] args)
         {
+            InterfaceMenueTest interfaceTest = new InterfaceMenueTest();
+            interfaceTest.showMenu();
         }
     }
 
